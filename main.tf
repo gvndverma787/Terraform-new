@@ -24,8 +24,8 @@ resource "azurerm_service_plan" "mywebappplan-4302" {
   sku_name            = "S1"
 }
 
-resource "azurerm_linux_web_app" "mywebapp-php" {
-  name                = "mywebapp-php"
+resource "azurerm_linux_web_app" "mywebapp-php-test" {
+  name                = "mywebapp-php-test"
   resource_group_name = azurerm_resource_group.rg-webapp.name
   location            = azurerm_resource_group.rg-webapp.location
   service_plan_id     = azurerm_service_plan.mywebappplan-4302.id
@@ -39,14 +39,14 @@ resource "azurerm_linux_web_app" "mywebapp-php" {
 }
 
 resource "azurerm_app_service_source_control" "source_control" {
-  app_id   = azurerm_linux_web_app.mywebapp-php.id
-  repo_url = "https://github.com/gvndverma787/simple-php-website.git"
-  branch   = "master"
+  app_id   = azurerm_linux_web_app.mywebapp-php-test.id
+  repo_url = "https://github.com/gvndverma787/samplewebsite.git"
+  branch   = "testbranch"
 }
 
 
 output "app_url" {
     description = "show webapp url"
-    value = azurerm_linux_web_app.mywebapp-php.default_hostname
+    value = azurerm_linux_web_app.mywebapp-php-test.default_hostname
   
 }
